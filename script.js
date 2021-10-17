@@ -1,4 +1,9 @@
+function jumboTron () {
+    var dateTime = moment().format('dddd MMM Do YYYY, h:mm a')
+    $('#currentDay').text(dateTime)
 
+}
+jumboTron()
 // older javascript
 $(document).ready(function () {
 
@@ -13,17 +18,21 @@ $(document).ready(function () {
     });
     
 function timeUpdater() {
-    var momentTime = moment().hours()
+    var momentTime = moment().hour(); 
+    
     $('.timeBlock').each(function () {
+        var blockHour = parseInt($(this).attr("id"));
        // if else 
        // add and remove classes in order to change colors 
-       if (momentTime > hour) {
+       if (momentTime > blockHour) {
+           $(this).children(".input").addClass('past');
+       }   else if (momentTime === blockHour) {
            $(this).children('.input').removeClass('past')
            $(this).children('.input').addClass('present')
        } else {
-           $(this).children('input').removeClass('past')
-           $(this).children('input').removeClass('present')
-           $(this).children('input').addClass('future')
+           $(this).children('.input').removeClass('past')
+           $(this).children('.input').removeClass('present')
+           $(this).children('.input').addClass('future')
        }
     })
 
@@ -32,10 +41,6 @@ function timeUpdater() {
 }
 timeUpdater();
 
-
-
-    // left side you're matching with your html 
-    // right side you're just accessing the VALUE from local storage that was saved earlier with setItem
 $('#9 .input').val(localStorage.getItem('9'));
 $('#10 .input').val(localStorage.getItem('10'));
 $('#11 .input').val(localStorage.getItem('11'));
@@ -48,7 +53,5 @@ $('#17 .input').val(localStorage.getItem('17'));
 $('#18 .input').val(localStorage.getItem('18'));
 $('#19 .input').val(localStorage.getItem('19'));
 $('#20 .input').val(localStorage.getItem('20'));
-
-
 
 })
